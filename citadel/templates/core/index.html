@@ -1,0 +1,25 @@
+{% extends "core/base.html" %}
+{% block content %}
+    {% for site in sites %}
+        {% if request.user == site.user %}
+    <article class="media content-section">
+      <img class="rounded-circle article-img" src="{{ site.user.profile.image.url }}">
+        <div class="media-body">
+          <div class="article-metadata">
+            <a class="mr-2" href="{% url 'user-sitepassword' site.user.username %}" >{{ site.user }}</a>
+            <!-- <small class="text-muted">{{ site.name }}</small> -->
+            <div></div>
+            <a class="mr-2" href="{% url 'sitepassword-detail' site.id %}" >{{ site.name }}</a>
+          </div>
+          <!-- <h2><a class="article-title" href="#">{{ site.password }}</a></h2> -->
+          <p class="article-content">{{ site.password }}</p>
+          <small class="article-muted">{{ site.email }}</small>
+          <p></p>
+          <small class="article-muted">{{ site.logo }}</small>
+        </div>
+      </article>
+        {% endif %}
+    {% endfor %} 
+{% endblock content %}
+
+    
